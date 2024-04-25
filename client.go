@@ -1,9 +1,10 @@
 package goaa
 
 import (
-	"goaa/airports"
-	"goaa/flights"
 	"net/url"
+
+	"github.com/johnbalvin/goaa/airports"
+	"github.com/johnbalvin/goaa/flights"
 )
 
 func Airports(searchText string, proxyURL *url.URL) ([]AirportData, error) {

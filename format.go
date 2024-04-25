@@ -1,8 +1,8 @@
 package goaa
 
 import (
-	"goaa/airports"
-	"goaa/flights"
+	"github.com/johnbalvin/goaa/airports"
+	"github.com/johnbalvin/goaa/flights"
 )
 
 type AirportData airports.Data
