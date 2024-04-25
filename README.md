@@ -117,5 +117,11 @@ This project is an open-source tool developed in Golang for extracting product i
             log.Println(err)
             return
         }
+        rawJSON, _ := json.MarshalIndent(flights, "", "  ")
+        fmt.Printf("%s", rawJSON) //in case you don't have write permisions
+        if err := os.WriteFile("./flights.json", rawJSON, 06444); err != nil {
+            log.Println(err)
+            return
+        }
     }
 ```
