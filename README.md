@@ -1,7 +1,7 @@
 # American Airlines scraper in Go
 
 ## Overview
-This project is an open-source tool developed in Golang for extracting product information from Airbnb. It's designed to be fast, efficient, and easy to use, making it an ideal solution for developers looking for American Airlines flights.
+This project is an open-source tool developed in Golang for extracting product information from American Airlines. It's designed to be fast, efficient, and easy to use, making it an ideal solution for developers looking for American Airlines flights.
 
 ## Features
 - Full search support
