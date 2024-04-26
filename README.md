@@ -125,3 +125,55 @@ This project is an open-source tool developed in Golang for extracting product i
         }
     }
 ```
+
+### Faster
+
+```Go
+    package main
+
+    import (
+        "encoding/json"
+        "fmt"
+        "log"
+        "os"
+        "sync"
+        "github.com/johnbalvin/goaa"
+    )
+    func main(){
+        from := "new york"
+        to:=    "galapagos"
+        departDate := "2024-05-01"
+        returnDate := "2024-05-04"
+        passengers := 1
+        locale := "es_EC"//where you are located, probably for increasing the price or is just for statistics, I DON'T KNOW, do not say that I said this field is for incresing the price, it's jut a theory
+        var airports1 []AirportData
+        var wg sync.WaitGroup
+        wg.Add(1)
+        go func(){
+            defer wg.Done()
+            airports, err := goaa.Airports(from, nil)
+            if err != nil {
+                log.Println(err)
+                return
+            }
+            airports1=airports
+        }()
+        airports2, err := goaa.Airports(to, nil)
+        if err != nil {
+            log.Println(err)
+            return
+        }
+        wg.Wait()
+        flights, err := goaa.Flights(locale, airports1[0].Code, airports2[0].Code, departDate, returnDate, passengers, nil)
+        if err != nil {
+            log.Println(err)
+            return
+        }
+        rawJSON, _ := json.MarshalIndent(flights, "", "  ")
+        fmt.Printf("%s", rawJSON) //in case you don't have write permisions
+        if err := os.WriteFile("./flights.json", rawJSON, 06444); err != nil {
+            log.Println(err)
+            return
+        }
+    }
+```
